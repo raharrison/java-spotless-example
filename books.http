@@ -1,0 +1,71 @@
+### Get all existing books
+GET http://localhost:8080/api/books
+Accept: application/json
+
+
+### Add New Book 6
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+    "id": 6,
+    "title": "Domain-Driven Design",
+    "author": "Eric Evans"
+}
+
+> {%
+    client.test("Book 6 should be added", () => {
+        client.assert(response.status === 200, "Expected 200 OK on add");
+        client.assert(response.body.includes("Book added"), "Response should confirm book added");
+    });
+%}
+
+
+### Get Book 6 and verify data
+GET http://localhost:8080/api/books/6
+Accept: application/json
+
+> {%
+    client.test("Verify book 6 content", () => {
+        client.assert(response.status === 200, "Should return 200 OK");
+        const json = response.body;
+        client.assert(json.title === "Domain-Driven Design", "Expected correct title");
+        client.assert(json.author === "Eric Evans", "Expected correct author");
+    });
+%}
+
+
+### Add New Book 7
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+    "id": 7,
+    "title": "Refactoring",
+    "author": "Martin Fowler"
+}
+
+
+### Update Existing Book (ID 1 — Change Title)
+PUT http://localhost:8080/api/books/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "title": "Clean Code (Updated Edition)",
+    "author": "Robert C. Martin"
+}
+
+
+### Delete Preloaded Book (ID 4 — The Pragmatic Programmer)
+DELETE http://localhost:8080/api/books/4
+
+
+### Get Book by ID (check updated Book 1)
+GET http://localhost:8080/api/books/1
+Accept: application/json
+
+
+### Final check: All books after changes
+GET http://localhost:8080/api/books
+Accept: application/json
