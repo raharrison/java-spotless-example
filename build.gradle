@@ -49,4 +49,8 @@ spotless {
 		trimTrailingWhitespace()
 		licenseHeaderFile rootProject.file('LICENSE.txt')
 	}
+	json {
+		target 'src/**/*.json'
+		jackson()
+	}
 }
