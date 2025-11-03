@@ -1,3 +1,7 @@
+# Java Spotless Example
+
+## Features
+
 - Automatic code formatting / whitespace
 - Not just Java - Kotlin, Groovy, JS/TS, Python, JSON etc
 - Remote unused imports
@@ -7,6 +11,8 @@
 
 Can run as part of the build process in PR's so developers don't have to worry about it.
 Doesn't just fail the build if formatting is incorrect, will apply the changes on top automatically
+
+## Example
 
 ```shell
 user@machine repo % ./gradlew build
@@ -22,3 +28,5 @@ BUILD SUCCESSFUL
 user@machine repo % ./gradlew build
 BUILD SUCCESSFUL
 ```
+
+After build all code will be formatted properly.
